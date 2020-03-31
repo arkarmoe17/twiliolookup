@@ -10,7 +10,7 @@ public class Person {
     private String name;
 
     @NotNull
-    @NotBlank(message="Please enter your phone number")
+    @ValidPhoneNumber(message="Please enter a valid phone number")
     private String phoneNumber;
 
     public String getName() {
