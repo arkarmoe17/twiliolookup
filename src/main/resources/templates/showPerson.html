@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Twilio Phone Number Lookup API Demo</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+
+<header>
+    <h1>Twilio Lookup API for Phone Number Validation</h1>
+</header>
+
+<main>
+
+    <label for="name">Your name is:</label>
+    <span id="name" class="person-data" th:text="${person.name}"></span>
+
+    <label for="tel">Your phone number is:</label>
+    <span id="tel" class="person-data" th:text="${person.phoneNumber}"></span>
+
+</main>
+
+<footer>
+    <p>
+        Built with 🔎 by <a href="https://twitter.com/MaximumGilliard">Matthew</a>
+    </p>
+</footer>
+</body>
+</html>
