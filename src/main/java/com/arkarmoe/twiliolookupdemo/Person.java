@@ -1,4 +1,4 @@
-package lol.gilliard.twiliolookupdemo;
+package com.arkarmoe.twiliolookupdemo;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -10,7 +10,7 @@ public class Person {
     private String name;
 
     @NotNull
-    @ValidPhoneNumber(message="Please enter a valid phone number")
+//    @ValidPhoneNumber(message="Please enter a valid phone number")
     private String phoneNumber;
 
     public String getName() {

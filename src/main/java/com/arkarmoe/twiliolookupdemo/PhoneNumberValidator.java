@@ -1,16 +1,16 @@
-package lol.gilliard.twiliolookupdemo;
+package com.arkarmoe.twiliolookupdemo;
 
 import com.twilio.Twilio;
 import com.twilio.exception.ApiException;
 import com.twilio.rest.lookups.v1.PhoneNumber;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
-@Configurable
-public class PhoneNumberValidator implements ConstraintValidator<ValidPhoneNumber, String> {
+@Service
+public class PhoneNumberValidator {
 
     @Value("${TWILIO_ACCOUNT_SID}")
     private String twilioAccountSid;
@@ -18,29 +18,31 @@ public class PhoneNumberValidator implements ConstraintValidator<ValidPhoneNumbe
     @Value("${TWILIO_AUTH_TOKEN}")
     private String twilioAuthToken;
 
-    @Override
-    public void initialize(ValidPhoneNumber constraintAnnotation) {
+
+    public PhoneNumberValidator() {
+    }
+
+    @PostConstruct
+    public void init(){
+        System.out.println("---- twilio running. ----");
         Twilio.init(twilioAccountSid, twilioAuthToken);
     }
 
-    @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    @PreDestroy
+    public void destroy(){
+        System.out.println("---- twilio stopping. ----");
+        Twilio.destroy();
+    }
 
-        // The Lookup API requires your phone number in E.164 format
-        // E.164 formatted phone numbers must not have spaces in them
+    public boolean isValid(String value) {
         value = value.replaceAll("[\\s()-]", "");
-
         if ("".equals(value)) {
             return false;
         }
-
         try {
             PhoneNumber.fetcher(new com.twilio.type.PhoneNumber(value)).fetch();
             return true;
-
         } catch (ApiException e) {
-            // The Lookup API returns HTTP 404 if the phone number is not found
-            // (ie it is not a real phone number)
             if (e.getStatusCode() == 404) {
                 return false;
             }

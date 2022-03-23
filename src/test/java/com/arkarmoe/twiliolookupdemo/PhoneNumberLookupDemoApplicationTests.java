@@ -1,4 +1,4 @@
-package lol.gilliard.twiliolookupdemo;
+package com.arkarmoe.twiliolookupdemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
