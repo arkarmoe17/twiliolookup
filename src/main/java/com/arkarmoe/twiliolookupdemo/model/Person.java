@@ -1,4 +1,4 @@
-package com.arkarmoe.twiliolookupdemo;
+package com.arkarmoe.twiliolookupdemo.model;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

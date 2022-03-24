@@ -1,5 +1,7 @@
-package com.arkarmoe.twiliolookupdemo;
+package com.arkarmoe.twiliolookupdemo.controller;
 
+import com.arkarmoe.twiliolookupdemo.service.PhoneNumberValidatorService;
+import com.arkarmoe.twiliolookupdemo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ValidateController {
     @Autowired
-    private PhoneNumberValidator phoneNumberValidator;
+    private PhoneNumberValidatorService phoneNumberValidator;
 
     @PostMapping("/validate")
     public ResponseEntity<?> validate(@RequestBody Person person) {

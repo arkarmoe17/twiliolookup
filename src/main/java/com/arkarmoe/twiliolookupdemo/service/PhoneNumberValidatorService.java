@@ -1,4 +1,4 @@
-package com.arkarmoe.twiliolookupdemo;
+package com.arkarmoe.twiliolookupdemo.service;
 
 import com.twilio.Twilio;
 import com.twilio.exception.ApiException;
@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Service
-public class PhoneNumberValidator {
+public class PhoneNumberValidatorService {
 
     @Value("${TWILIO_ACCOUNT_SID}")
     private String twilioAccountSid;
@@ -19,17 +19,17 @@ public class PhoneNumberValidator {
     private String twilioAuthToken;
 
 
-    public PhoneNumberValidator() {
+    public PhoneNumberValidatorService() {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println("---- twilio running. ----");
         Twilio.init(twilioAccountSid, twilioAuthToken);
     }
 
     @PreDestroy
-    public void destroy(){
+    public void destroy() {
         System.out.println("---- twilio stopping. ----");
         Twilio.destroy();
     }
